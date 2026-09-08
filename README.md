@@ -15,7 +15,7 @@ The pipeline takes monocular camera images as input and outputs calibrated multi
 
 ## Pipeline
 
-![Architecture](assets/gen_architecture.pdf)
+![Architecture](assets/gen_architecture.png)
 
 The system is composed of three sequential stages:
 
