@@ -8,15 +8,14 @@
 
 ## Overview
 
-This project implements a full autonomous driving perception and prediction pipeline, developed as part of my M.Sc. thesis at SRH Berlin in partnership with **Deep Safety GmbH**, within the **AI4CCAM** EU research consortium (14 partners across Europe).
-
-The pipeline takes monocular camera images as input and outputs calibrated multi-agent trajectory predictions with uncertainty estimates — designed with real-world deployment in mind, not just benchmark performance.
+This project implements a full autonomous driving perception and prediction pipeline, developed as part of my M.Sc. thesis at  **Deep Safety GmbH**.
+The pipeline takes monocular camera images as input and outputs calibrated multi-agent trajectory predictions with uncertainty estimates. The system is designed with real-world deployment in mind, not just benchmark performance.
 
 ---
 
 ## Pipeline
 
-![Architecture](assets/architecture.png)
+![Architecture](assets/gen_architecture.png)
 
 The system is composed of three sequential stages:
 
@@ -27,17 +26,17 @@ The system is composed of three sequential stages:
 
 **2. Multi-Object Tracking**
 - Custom Kalman Filter tracker built from scratch
-- Hungarian algorithm for data association
-- **AMOTA: 0.929** on nuScenes validation set
+- Greedy Nearest Neighbour algorithm for data association
+- **AMOTA: 0.929** on nuScenes 
 - Outputs: Consistent agent trajectories over time with tracker covariance
 
 **3. Multi-Agent Trajectory Prediction**
 - GATv2-based Graph Neural Network for agent interaction modeling
-- 6-mode multimodal predictions over a 3-second horizon
+- 6-mode multimodal predictions over a 3-second horizon with 2-second history horizon
 - Three-layer uncertainty quantification:
-  - **U1** — Tracker covariance propagation
-  - **U2** — Aleatoric uncertainty via Laplace Mixture Model
-  - **U3** — Epistemic uncertainty via MC Dropout
+  - **U1**: Tracker covariance propagation
+  - **U2**: Aleatoric uncertainty via Laplace Mixture Model
+  - **U3**: Epistemic uncertainty via MC Dropout
 
 ---
 
@@ -59,10 +58,9 @@ The system is composed of three sequential stages:
 ![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white)
 ![CUDA](https://img.shields.io/badge/CUDA-76B900?style=for-the-badge&logo=nvidia&logoColor=white)
 ![NumPy](https://img.shields.io/badge/NumPy-013243?style=for-the-badge&logo=numpy&logoColor=white)
-![ROS](https://img.shields.io/badge/ROS-22314E?style=for-the-badge&logo=ros&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-2CA5E0?style=for-the-badge&logo=docker&logoColor=white)
 
-**ML:** Graph Attention Networks (GATv2) · Kalman Filtering · Laplace Mixture Model · MC Dropout · Hungarian Algorithm
+**ML:** Graph Attention Networks (GATv2) · Kalman Filtering · Laplace Mixture Model · Multimodality · Uncertainty Quantification
 
 **Dataset:** nuScenes (autonomous driving benchmark, 1000 scenes)
 
